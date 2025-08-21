@@ -8,7 +8,9 @@ import ResultsPage from './pages/ResultsPage';
 
 function App() {
   return (
-    <Router>
+    // THIS IS THE FINAL, CRITICAL FIX
+    // We are telling the router that the entire app lives under "/pumping-frequency-estimator/"
+    <Router basename="/pumping-frequency-estimator/">
     <Routes>
     <Route path="/" element={<WelcomePage />} />
     <Route path="/input" element={<InputForm />} />
