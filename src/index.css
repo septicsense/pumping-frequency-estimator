@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.75rem;
+
+    /* Neumorphism Shadows */
+    --shadow-light: 210 40% 98%; /* Lighter shade */
+    --shadow-dark: 215.4 16.3% 46.9%; /* Darker shade */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+
+    /* Neumorphism Shadows */
+    --shadow-light: 217.2 32.6% 22.5%; /* Lighter shade */
+    --shadow-dark: 0 0% 0%; /* Darker shade */
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 850;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /*
+   * NEW: Aurora Background
+   * Creates a soft, shifting gradient for a more dynamic and modern feel.
+   */
+  .aurora-bg {
+    position: relative;
+    overflow: hidden;
+    background-color: hsl(var(--background));
+  }
+
+  .aurora-bg::before, .aurora-bg::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(100px);
+    animation: move 20s linear infinite;
+  }
+
+  .dark .aurora-bg::before, .dark .aurora-bg::after {
+    opacity: 0.3;
+  }
+
+  .aurora-bg::before {
+    background: radial-gradient(circle, hsl(var(--primary)) 0%, transparent 50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .aurora-bg::after {
+    background: radial-gradient(circle, hsl(270, 80%, 60%) 0%, transparent 50%);
+    animation-delay: -10s;
+  }
+
+  @keyframes move {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(20%); }
+    50% { transform: translate(-50%, -50%) rotate(180deg) translateX(20%); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(20%); }
+  }
+
+
+  /*
+   * ENHANCED: Glass Effect
+   * Increased contrast and added a subtle inner shadow for a frosted-edge appearance.
+   */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .glass {
+    background: rgba(10, 10, 20, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsla(var(--foreground), 0.2);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsla(var(--foreground), 0.3);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2.5 px-5 rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-500/50 shadow-sm hover:shadow;
+  }
+
+  .btn-secondary {
+    @apply bg-white/5 hover:bg-white/10 text-foreground font-medium py-2.5 px-5 rounded-xl border border-border transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-500/30 shadow-sm hover:shadow;
+  }
+
+  /*
+   * NEW: Neumorphism Styles
+   * For creating soft, tactile UI elements.
+   */
+  .neumorphic {
+    background-color: hsl(var(--background));
+    border-radius: 1rem;
+    transition: box-shadow 0.2s ease-out;
+    box-shadow:
+    6px 6px 12px hsla(var(--shadow-dark), 0.2),
+    -6px -6px 12px hsla(var(--shadow-light), 0.8);
+  }
+
+  .neumorphic-pressed {
+    background-color: hsl(var(--background));
+    border-radius: 1rem;
+    transition: box-shadow 0.2s ease-out;
+    box-shadow:
+    inset 4px 4px 8px hsla(var(--shadow-dark), 0.2),
+    inset -4px -4px 8px hsla(var(--shadow-light), 0.8);
+  }
+
+  .card {
+    @apply glass rounded-2xl p-6 shadow-sm;
+  }
+
+  /*
+   * NEW: Floating Label Input Support
+   * Base styles for the floating label container and transitions.
+   */
+  .form-group {
+    @apply relative;
+  }
+
+  .form-label {
+    @apply absolute left-4 top-3.5 text-muted-foreground transition-all duration-200 pointer-events-none;
+  }
+
+  .form-input {
+    @apply w-full bg-white/5 border border-border rounded-xl py-3.5 px-4 text-foreground placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-transparent transition-all;
+  }
+
+  /* When input is focused or has a value (not showing placeholder) */
+  .form-input:focus + .form-label,
+  .form-input:not(:placeholder-shown) + .form-label {
+    @apply transform -translate-y-2.5 scale-75 top-2 bg-background px-1;
+  }
+
+  .dark .form-input:focus + .form-label,
+  .dark .form-input:not(:placeholder-shown) + .form-label {
+    background: hsl(222.2 84% 4.9%); /* Match dark background */
+  }
+
+
+  /* Enhanced focus states */
+  .focus-ring {
+    @apply outline-none ring-0 focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-background transition-all duration-200;
+  }
+
+  /* Subtle animation classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-glow {
+    animation: glow 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px -10px hsl(var(--primary)); }
+    to { box-shadow: 0 0 30px -5px hsl(var(--primary)); }
+  }
+}
